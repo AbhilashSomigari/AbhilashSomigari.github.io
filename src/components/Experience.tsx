@@ -6,55 +6,46 @@ import { experience } from '../data/experience'
 
 export function Experience() {
   return (
-    <section id="experience" className="scroll-mt-20 border-t border-border py-24 sm:py-28">
+    <section id="experience" aria-labelledby="experience-heading" className="scroll-mt-20 border-t border-border py-20 sm:py-24">
       <Container>
-        <SectionHeading
-          eyebrow="Experience"
-          title="Engineering Experience"
-          description="Research assistantship, teaching, and mentoring work — the professional context behind the projects below."
-        />
+        <SectionHeading id="experience-heading" eyebrow="Experience" title="Where I’ve worked" />
 
-        <div className="mt-12 space-y-10">
+        <ol className="relative mt-12 space-y-10 border-l border-border pl-6 sm:pl-8">
           {experience.map((entry, index) => (
-            <Reveal key={entry.role + entry.organization} delay={index * 0.05}>
-              <div className="grid gap-2 border-t border-border pt-8 sm:grid-cols-[220px_1fr] sm:gap-8">
-                <div>
+            <li key={entry.role + entry.organization} className="relative">
+              <span
+                aria-hidden="true"
+                className={`absolute top-1.5 -left-[29px] h-2.5 w-2.5 rounded-full border-2 sm:-left-[37px] ${
+                  index === 0 ? 'border-accent bg-accent' : 'border-border-strong bg-bg'
+                }`}
+              />
+              <Reveal delay={Math.min(index, 2) * 0.04}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                  <h3 className="text-lg font-semibold text-text">{entry.role}</h3>
                   <p className="font-mono text-xs text-text-tertiary">
-                    {entry.start} — {entry.end}
-                  </p>
-                  <h3 className="mt-1 text-lg font-semibold text-text">
-                    {entry.role}
-                  </h3>
-                  <p className="text-sm text-text-secondary">
-                    {entry.organization}
-                  </p>
-                  <p className="mt-1 text-xs text-text-tertiary">
-                    {entry.context}
+                    <time>{entry.start}</time> – <time>{entry.end}</time>
                   </p>
                 </div>
-
-                <div>
-                  <ul className="space-y-2.5">
-                    {entry.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex gap-2.5 text-sm leading-relaxed text-text-secondary"
-                      >
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {entry.tech.map((tech) => (
-                      <Tag key={tech}>{tech}</Tag>
-                    ))}
-                  </div>
+                <p className="mt-0.5 text-sm text-text-secondary">
+                  {entry.organization} · {entry.location}
+                </p>
+                <ul className="mt-4 max-w-3xl space-y-2.5">
+                  {entry.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-2.5 text-sm leading-relaxed text-text-secondary">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {entry.tech.map((tech) => (
+                    <Tag key={tech}>{tech}</Tag>
+                  ))}
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </Container>
     </section>
   )

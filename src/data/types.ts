@@ -1,30 +1,20 @@
-export type FocusCategory =
-  | 'Software Engineering'
-  | 'Full-Stack Engineering'
-  | 'Applied AI'
-  | 'Research Engineering'
-  | 'Open-Source Collaboration'
+export type ProjectTag = 'Agentic AI' | 'AI/ML' | 'Backend' | 'Full Stack' | 'Frontend' | 'Research'
+
+export const PROJECT_TAGS: ProjectTag[] = ['Agentic AI', 'AI/ML', 'Backend', 'Full Stack', 'Frontend', 'Research']
 
 export interface FocusArea {
-  category: FocusCategory
+  title: string
   summary: string
-  items: string[]
 }
 
 export interface ExperienceEntry {
   role: string
   organization: string
-  context: string
+  location: string
   start: string
   end: string
   bullets: string[]
   tech: string[]
-}
-
-export interface ProjectLink {
-  github: string
-  demo?: string
-  docs?: string
 }
 
 export interface ArchitectureStep {
@@ -32,20 +22,36 @@ export interface ArchitectureStep {
   detail?: string
 }
 
+/** A measured outcome, quoted from the repo README or the résumé. */
+export interface ProjectResult {
+  value: string
+  label: string
+}
+
+/**
+ * Hand-curated project copy. Anything that GitHub knows better (stars,
+ * language, topics, last push, archived state, live-demo URL) is read from
+ * the synced snapshot via `repo` instead of being typed here.
+ */
 export interface Project {
   slug: string
+  /** GitHub repository name; joins this entry to the synced metadata. */
+  repo: string
   name: string
   oneLiner: string
-  category: FocusCategory
-  secondaryCategories?: FocusCategory[]
+  tags: ProjectTag[]
   problem: string
   approach: string
   highlights: string[]
+  results?: ProjectResult[]
+  /** Results context, e.g. how and when the numbers were measured. */
+  resultsNote?: string
   stack: string[]
-  links: ProjectLink
   architecture: ArchitectureStep[]
-  license?: string
-  flagship?: boolean
+  /** Overrides the GitHub homepage / Pages URL if set. */
+  demo?: string
+  /** Extra link, e.g. a package registry page. */
+  extraLink?: { label: string; href: string }
 }
 
 export interface ResearchTheme {
@@ -73,5 +79,5 @@ export interface EducationEntry {
 export interface Certification {
   name: string
   issuer: string
-  date: string
+  date?: string
 }

@@ -1,78 +1,57 @@
 import type { SkillGroup } from './types'
 
+// Source: public/resume.pdf skills section, cross-checked against the repos.
+// Ordered so the most role-relevant groups come first.
 export const skills: SkillGroup[] = [
   {
-    category: 'Languages',
-    skills: ['Python', 'Java', 'C / C++', 'JavaScript', 'TypeScript', 'SQL'],
-  },
-  {
-    category: 'Frontend Engineering',
+    category: 'Generative AI & Agents',
     skills: [
-      'React',
-      'Next.js',
-      'HTML / CSS',
-      'Tailwind CSS',
-      'Responsive Design',
-      'Component Architecture',
+      'LangGraph',
+      'LangChain',
+      'RAG',
+      'MCP',
+      'OpenAI & Anthropic APIs',
+      'Ollama',
+      'LLM Evaluation',
     ],
   },
   {
-    category: 'Backend & APIs',
-    skills: ['FastAPI', 'Flask', 'Django', 'REST API Design'],
-  },
-  {
-    category: 'Databases & Data',
-    skills: [
-      'PostgreSQL',
-      'pgvector',
-      'SQLite',
-      'Vector Retrieval (Chroma)',
-      'Data Pipeline Design',
-    ],
-  },
-  {
-    category: 'AI / Machine Learning',
+    category: 'Machine Learning',
     skills: [
       'PyTorch',
       'TensorFlow',
       'scikit-learn',
       'Computer Vision',
-      'Object Detection (YOLOv5)',
-      'Explainable AI (Grad-CAM, EigenCAM, Integrated Gradients)',
-      'Model Evaluation',
+      'NLP',
+      'OpenCV',
+      'YOLOv5',
+      'SAM',
     ],
   },
   {
-    category: 'Generative AI / Agents',
-    skills: [
-      'LangGraph',
-      'LangChain',
-      'CrewAI',
-      'Agno',
-      'Retrieval-Augmented Generation',
-      'Tool-Calling & MCP Servers',
-      'Agent Evaluation',
-    ],
+    category: 'Languages',
+    skills: ['Python', 'TypeScript', 'JavaScript', 'Java', 'C / C++', 'SQL'],
   },
   {
-    category: 'Infrastructure & Developer Tools',
+    category: 'Backend & Data',
+    skills: ['FastAPI', 'Flask', 'Django', 'REST APIs', 'PostgreSQL', 'pgvector', 'Chroma', 'Pandas'],
+  },
+  {
+    category: 'Frontend',
+    skills: ['React', 'Next.js', 'Tailwind CSS'],
+  },
+  {
+    category: 'Cloud & DevOps',
     skills: [
       'Docker',
       'Kubernetes',
       'Terraform',
       'AWS (EKS, ECR, RDS)',
-      'Git / GitHub',
-      'GitHub Actions (CI/CD)',
+      'Azure',
+      'GCP',
+      'GitHub Actions',
+      'OpenTelemetry',
       'Linux',
-    ],
-  },
-  {
-    category: 'Research Engineering',
-    skills: [
-      'Experiment Design & Reproducibility',
-      'Baseline-Driven Model Comparison',
-      'Quantitative Evaluation Metrics',
-      'Applied Medical Computer Vision (SAM3)',
     ],
   },
 ]

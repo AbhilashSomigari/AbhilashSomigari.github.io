@@ -1,18 +1,17 @@
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
-import { FocusAreas } from './components/FocusAreas'
-import { Experience } from './components/Experience'
-import { FeaturedProject } from './components/FeaturedProject'
 import { Projects } from './components/Projects'
-import { Research } from './components/Research'
-import { OpenSource } from './components/OpenSource'
+import { Experience } from './components/Experience'
 import { Skills } from './components/Skills'
+import { Research } from './components/Research'
 import { Education } from './components/Education'
-import { Philosophy } from './components/Philosophy'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { BackToTop } from './components/ui/BackToTop'
 
+// Section order is tuned for a 30–60 second recruiter scan: who + proof
+// (hero), short context, strongest work, then experience and skills.
 function App() {
   return (
     <>
@@ -26,20 +25,15 @@ function App() {
       <main id="main-content">
         <Hero />
         <About />
-        <FocusAreas />
+        <Projects />
         <Experience />
-        <section id="projects" className="scroll-mt-20">
-          <FeaturedProject />
-          <Projects />
-        </section>
-        <Research />
-        <OpenSource />
         <Skills />
+        <Research />
         <Education />
-        <Philosophy />
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }
