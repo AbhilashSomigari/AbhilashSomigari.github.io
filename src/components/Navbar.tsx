@@ -1,89 +1,151 @@
-import { useEffect, useState } from 'react'
-import { Github, Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { FileText, Menu, Moon, Sun, X } from 'lucide-react'
 import { Container } from './ui/Container'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { useTheme } from '../hooks/useTheme'
 import { links } from '../data/links'
 
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'research', label: 'Research' },
-  { id: 'open-source', label: 'Open Source' },
+  { id: 'experience', label: 'Experience' },
   { id: 'skills', label: 'Skills' },
+  { id: 'research', label: 'Research' },
+  { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
-]
+] as const
+
+const SECTION_IDS = NAV_ITEMS.map((item) => item.id)
+
+function ThemeToggle() {
+  const { toggle } = useTheme()
+  // Both icons render; CSS shows the right one, so the prerendered markup
+  // never depends on the visitor's theme.
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Toggle light and dark theme"
+      className="flex h-9 w-9 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text"
+    >
+      <Sun size={17} className="hidden dark:block" aria-hidden="true" />
+      <Moon size={17} className="block dark:hidden" aria-hidden="true" />
+    </button>
+  )
+}
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const active = useActiveSection(NAV_ITEMS.map((item) => item.id))
+  const [scrolled, setScrolled] = useState(false)
+  const active = useActiveSection(SECTION_IDS)
+  const menuButton = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    document.body.style.overflow = 'hidden'
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        menuButton.current?.focus()
+      }
+    }
+    const desktop = window.matchMedia('(min-width: 768px)')
+    const onResize = () => desktop.matches && setMenuOpen(false)
+    document.addEventListener('keydown', onKey)
+    desktop.addEventListener('change', onResize)
     return () => {
       document.body.style.overflow = ''
+      document.removeEventListener('keydown', onKey)
+      desktop.removeEventListener('change', onResize)
     }
   }, [menuOpen])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-bg/80 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between">
-        <a
-          href="#hero"
-          className="font-mono text-sm font-semibold tracking-tight text-text"
-        >
-          Abhilash.
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-colors ${
+        scrolled || menuOpen ? 'border-border bg-bg/85' : 'border-transparent bg-bg/40'
+      }`}
+    >
+      <Container className="flex h-16 items-center justify-between gap-4">
+        <a href="#top" className="font-mono text-sm font-semibold tracking-tight text-text">
+          abhilash<span className="text-accent">.</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                active === item.id
-                  ? 'text-text'
-                  : 'text-text-secondary hover:text-text'
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
+        <nav aria-label="Primary" className="hidden md:block">
+          <ul className="flex items-center gap-0.5">
+            {NAV_ITEMS.map((item) => {
+              const isActive = active === item.id
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`relative block rounded-md px-3 py-2 text-sm transition-colors ${
+                      isActive ? 'text-text' : 'text-text-secondary hover:text-text'
+                    }`}
+                  >
+                    {item.label}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute inset-x-3 -bottom-px h-px bg-accent transition-opacity ${
+                        isActive ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="flex items-center gap-1.5">
+          <ThemeToggle />
           <a
-            href={links.github}
+            href={links.resume}
             target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub profile"
-            className="text-text-secondary transition-colors hover:text-text"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-lg border border-border-strong px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent sm:inline-flex"
           >
-            <Github size={19} />
+            <FileText size={15} aria-hidden="true" />
+            Résumé
+            <span className="sr-only"> (PDF, opens in a new tab)</span>
           </a>
+          <button
+            ref={menuButton}
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-text md:hidden"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="text-text md:hidden"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
       </Container>
 
       {menuOpen && (
-        <nav className="border-t border-border bg-bg px-5 py-4 md:hidden">
+        <nav
+          id="mobile-menu"
+          aria-label="Primary"
+          className="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-bg px-5 py-4 md:hidden"
+        >
           <ul className="flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
                   onClick={() => setMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2.5 text-base ${
-                    active === item.id ? 'text-text' : 'text-text-secondary'
+                  aria-current={active === item.id ? 'true' : undefined}
+                  className={`block rounded-lg px-3 py-3 text-base ${
+                    active === item.id ? 'bg-bg-elevated text-text' : 'text-text-secondary'
                   }`}
                 >
                   {item.label}
@@ -92,12 +154,12 @@ export function Navbar() {
             ))}
             <li className="mt-2 border-t border-border pt-3">
               <a
-                href={links.github}
+                href={links.resume}
                 target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 rounded-md px-3 py-2.5 text-base text-text-secondary"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg px-3 py-3 text-base text-text-secondary"
               >
-                <Github size={18} /> GitHub
+                <FileText size={18} aria-hidden="true" /> Résumé (PDF)
               </a>
             </li>
           </ul>

@@ -1,31 +1,42 @@
 import { Container } from './ui/Container'
 import { Reveal } from './ui/Reveal'
 import { SectionHeading } from './ui/SectionHeading'
-import { Tag } from './ui/Tag'
 import { skills } from '../data/skills'
 
 export function Skills() {
   return (
-    <section id="skills" className="scroll-mt-20 border-t border-border py-24 sm:py-28">
+    <section id="skills" aria-labelledby="skills-heading" className="scroll-mt-20 border-t border-border py-20 sm:py-24">
       <Container>
-        <SectionHeading eyebrow="Skills" title="Technical Toolbox" />
+        <SectionHeading
+          id="skills-heading"
+          eyebrow="Skills"
+          title="Technical toolbox"
+          description="Grouped by area, most relevant first. No proficiency bars: the projects above show how each one is used."
+        />
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {skills.map((group, index) => (
-            <Reveal key={group.category} delay={(index % 3) * 0.05}>
-              <div className="h-full rounded-xl border border-border bg-bg-card p-6">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
+        <Reveal className="mt-10">
+          <dl className="card divide-y divide-border rounded-xl border border-border bg-bg-card">
+            {skills.map((group) => (
+              <div key={group.category} className="grid gap-3 p-5 sm:grid-cols-[200px_1fr] sm:gap-6 sm:p-6">
+                <dt className="font-mono text-xs uppercase tracking-wider text-accent sm:pt-1.5">
                   {group.category}
-                </h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <Tag key={skill}>{skill}</Tag>
-                  ))}
-                </div>
+                </dt>
+                <dd>
+                  <ul className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="rounded-md border border-border bg-bg-elevated px-2.5 py-1 text-sm text-text"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </dl>
+        </Reveal>
       </Container>
     </section>
   )

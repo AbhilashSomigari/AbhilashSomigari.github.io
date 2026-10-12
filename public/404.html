@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="dark light" />
     <title>404 — Abhilash Somigari</title>
     <style>
       html, body {
@@ -25,7 +26,7 @@
       }
       .code {
         font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
-        color: #7dd3c0;
+        color: #5eead4;
         font-size: 0.9rem;
         letter-spacing: 0.08em;
       }
@@ -40,7 +41,14 @@
         margin-top: 0.5rem;
         font-size: 0.9rem;
       }
-      a:hover { border-color: #7dd3c0; color: #7dd3c0; }
+      a:hover { border-color: #5eead4; color: #5eead4; }
+      @media (prefers-color-scheme: light) {
+        html, body { background: #fafafa; color: #18181b; }
+        .code { color: #0f766e; }
+        p { color: #4b4b55; }
+        a { color: #18181b; border-color: #c9c9d0; }
+        a:hover { border-color: #0f766e; color: #0f766e; }
+      }
     </style>
   </head>
   <body>

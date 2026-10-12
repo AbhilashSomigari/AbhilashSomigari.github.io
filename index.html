@@ -1,46 +1,81 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Set the theme before first paint (stored choice, else OS preference)
+         so there's no flash. Keep in sync with src/hooks/useTheme.ts. -->
+    <script>
+      (function () {
+        var theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+        document.documentElement.dataset.theme = theme
+        var meta = document.querySelector('meta[name="theme-color"]')
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#fafafa' : '#0a0a0b')
+      })()
+    </script>
     <meta name="theme-color" content="#0a0a0b" />
-    <link rel="icon" type="image/jpeg" href="/profile.jpg" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>Abhilash Somigari | AI Engineer: Agentic Systems & LLM Evaluation</title>
+    <meta
+      name="description"
+      content="Abhilash Somigari is an AI engineer building agentic LLM systems with LangGraph, FastAPI, and PostgreSQL, plus the evaluation harnesses, guardrails, and infrastructure that make them reliable. M.S. Computer Science, West Virginia University."
+    />
+    <meta name="author" content="Abhilash Reddy Somigari" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://abhilashsomigari.github.io/" />
 
+    <link rel="icon" type="image/jpeg" href="/profile.jpg" />
+    <link rel="apple-touch-icon" href="/profile.jpg" />
+
+    <!-- Fonts load without blocking first paint; system fonts show until then. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-
-    <title>Abhilash Somigari | Software Engineer · Full-Stack · Applied AI</title>
-    <meta
-      name="description"
-      content="Abhilash Somigari is a software engineer building full-stack products, applied AI systems, and research-driven tools — from React/TypeScript interfaces to FastAPI and LangGraph backends, explainable computer vision pipelines, and reproducible ML experiments."
-    />
-    <meta name="author" content="Abhilash Somigari" />
-    <meta name="robots" content="index, follow" />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      />
+    </noscript>
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://abhilashsomigari.github.io/" />
-    <meta property="og:title" content="Abhilash Somigari | Software Engineer · Full-Stack · Applied AI" />
+    <meta property="og:site_name" content="Abhilash Somigari" />
+    <meta property="og:title" content="Abhilash Somigari | AI Engineer: Agentic Systems & LLM Evaluation" />
     <meta
       property="og:description"
-      content="Building reliable software, intelligent systems, and research-driven products. Software Engineering · Full-Stack Engineering · Applied AI · Research Engineering · Open-Source Collaboration."
+      content="Agentic AI systems with the evaluation, guardrails, and infrastructure that make them trustworthy. Projects: OpsPilot, EvalForge, ProspectPilot."
     />
-    <meta property="og:image" content="https://abhilashsomigari.github.io/og-image.svg" />
-    <meta property="og:site_name" content="Abhilash Somigari" />
+    <meta property="og:image" content="https://abhilashsomigari.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Abhilash Somigari, AI Engineer: agentic systems and LLM evaluation" />
+    <meta property="profile:first_name" content="Abhilash" />
+    <meta property="profile:last_name" content="Somigari" />
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abhilash Somigari | Software Engineer · Full-Stack · Applied AI" />
+    <meta name="twitter:title" content="Abhilash Somigari | AI Engineer: Agentic Systems & LLM Evaluation" />
     <meta
       name="twitter:description"
-      content="Building reliable software, intelligent systems, and research-driven products."
+      content="Agentic AI systems with the evaluation, guardrails, and infrastructure that make them trustworthy."
     />
-    <meta name="twitter:image" content="https://abhilashsomigari.github.io/og-image.svg" />
+    <meta name="twitter:image" content="https://abhilashsomigari.github.io/og-image.png" />
+    <meta name="twitter:image:alt" content="Abhilash Somigari, AI Engineer: agentic systems and LLM evaluation" />
 
     <script type="application/ld+json">
       {
@@ -49,26 +84,35 @@
         "name": "Abhilash Somigari",
         "alternateName": "Abhilash Reddy Somigari",
         "url": "https://abhilashsomigari.github.io/",
-        "image": "https://abhilashsomigari.github.io/og-image.svg",
-        "jobTitle": "Software Engineer",
-        "description": "Software engineer building full-stack products and applied AI systems, with research engineering and open-source collaboration.",
+        "image": "https://abhilashsomigari.github.io/profile.jpg",
+        "jobTitle": "AI Engineer",
+        "description": "AI engineer building agentic LLM systems and the evaluation, guardrails, and infrastructure that make them reliable.",
+        "email": "mailto:abhilashreddysomigari@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Morgantown",
+          "addressRegion": "WV",
+          "addressCountry": "US"
+        },
         "sameAs": [
           "https://github.com/AbhilashSomigari",
           "https://www.linkedin.com/in/abhilashreddysomigari"
         ],
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "West Virginia University"
-        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "West Virginia University" },
+          { "@type": "CollegeOrUniversity", "name": "Jawaharlal Nehru Technological University Hyderabad" }
+        ],
         "knowsAbout": [
-          "Software Engineering",
-          "Full-Stack Engineering",
-          "Applied AI",
+          "AI Agents",
+          "Large Language Models",
+          "LLM Evaluation",
+          "Retrieval-Augmented Generation",
+          "LangGraph",
           "Machine Learning",
           "Computer Vision",
-          "Retrieval-Augmented Generation",
-          "Research Engineering",
-          "Open-Source Software"
+          "Explainable AI",
+          "Backend Engineering",
+          "Software Engineering"
         ]
       }
     </script>
