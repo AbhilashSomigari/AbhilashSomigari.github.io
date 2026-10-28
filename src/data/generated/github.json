@@ -2,6 +2,24 @@
   "user": "AbhilashSomigari",
   "repos": [
     {
+      "id": 1373795019,
+      "name": "automatic-emergency-braking",
+      "url": "https://github.com/AbhilashSomigari/automatic-emergency-braking",
+      "description": "Intelligent and Safe Robotics",
+      "readmeSummary": null,
+      "homepage": null,
+      "pagesUrl": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "license": "MIT",
+      "fork": false,
+      "archived": false,
+      "createdAt": "2026-09-17T01:21:19Z",
+      "pushedAt": "2026-09-17T01:23:21Z"
+    },
+    {
       "id": 1381760351,
       "name": "evalforge",
       "url": "https://github.com/AbhilashSomigari/evalforge",
@@ -27,6 +45,42 @@
       "pushedAt": "2026-10-11T18:55:07Z"
     },
     {
+      "id": 1435853554,
+      "name": "fast-when-certain",
+      "url": "https://github.com/AbhilashSomigari/fast-when-certain",
+      "description": "Uncertainty-aware speed control for F1TENTH: drive fast when localization is confident",
+      "readmeSummary": null,
+      "homepage": null,
+      "pagesUrl": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "license": null,
+      "fork": false,
+      "archived": false,
+      "createdAt": "2026-10-27T14:36:54Z",
+      "pushedAt": "2026-10-27T14:39:58Z"
+    },
+    {
+      "id": 1400294207,
+      "name": "follow-the-gap",
+      "url": "https://github.com/AbhilashSomigari/follow-the-gap",
+      "description": "Intelligent and Safe Robotics - F1TENTH Follow the Gap (ROS 2)",
+      "readmeSummary": null,
+      "homepage": null,
+      "pagesUrl": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "license": null,
+      "fork": false,
+      "archived": false,
+      "createdAt": "2026-10-01T15:53:06Z",
+      "pushedAt": "2026-10-27T17:11:46Z"
+    },
+    {
       "id": 1064932533,
       "name": "FRAS",
       "url": "https://github.com/AbhilashSomigari/FRAS",
@@ -50,10 +104,10 @@
       "pushedAt": "2026-09-21T05:16:20Z"
     },
     {
-      "id": 1400294207,
-      "name": "Lab4-Follow-the-Gap",
-      "url": "https://github.com/AbhilashSomigari/Lab4-Follow-the-Gap",
-      "description": "Intelligent and Safe Robotics - Lab 4: F1TENTH Follow the Gap (ROS 2)",
+      "id": 1371738240,
+      "name": "intro-to-ros2",
+      "url": "https://github.com/AbhilashSomigari/intro-to-ros2",
+      "description": "Intelligent and Safe Robotics - Lab 1: ROS 2 talker/relay (AckermannDriveStamped)",
       "readmeSummary": null,
       "homepage": null,
       "pagesUrl": null,
@@ -61,11 +115,11 @@
       "topics": [],
       "stars": 0,
       "forks": 0,
-      "license": null,
+      "license": "MIT",
       "fork": false,
       "archived": false,
-      "createdAt": "2026-10-01T15:53:06Z",
-      "pushedAt": "2026-10-01T17:09:48Z"
+      "createdAt": "2026-09-15T15:51:36Z",
+      "pushedAt": "2026-09-17T01:01:01Z"
     },
     {
       "id": 1128730256,
@@ -142,6 +196,24 @@
       "archived": false,
       "createdAt": "2026-10-06T01:16:09Z",
       "pushedAt": "2026-10-07T02:29:27Z"
+    },
+    {
+      "id": 1436033572,
+      "name": "pure-pursuit",
+      "url": "https://github.com/AbhilashSomigari/pure-pursuit",
+      "description": "Pure pursuit waypoint following for F1TENTH (ROS 2)",
+      "readmeSummary": null,
+      "homepage": null,
+      "pagesUrl": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "license": null,
+      "fork": false,
+      "archived": false,
+      "createdAt": "2026-10-27T17:04:38Z",
+      "pushedAt": "2026-10-27T17:25:32Z"
     },
     {
       "id": 1295965092,
@@ -236,5 +308,7 @@
       "pushedAt": "2026-09-21T04:33:54Z"
     }
   ],
-  "aliases": {}
+  "aliases": {
+    "Lab4-Follow-the-Gap": "follow-the-gap"
+  }
 }
