@@ -2,6 +2,24 @@
   "user": "AbhilashSomigari",
   "repos": [
     {
+      "id": 1429849388,
+      "name": "applypilot",
+      "url": "https://github.com/AbhilashSomigari/applypilot",
+      "description": "Find new early-career tech jobs minutes after posting, screen and rank them, and apply on the employer's site with every submit approved by you.",
+      "readmeSummary": null,
+      "homepage": null,
+      "pagesUrl": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "license": null,
+      "fork": false,
+      "archived": false,
+      "createdAt": "2026-10-22T14:20:46Z",
+      "pushedAt": "2026-10-22T15:19:03Z"
+    },
+    {
       "id": 1373795019,
       "name": "automatic-emergency-braking",
       "url": "https://github.com/AbhilashSomigari/automatic-emergency-braking",
