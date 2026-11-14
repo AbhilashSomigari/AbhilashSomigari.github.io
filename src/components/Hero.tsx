@@ -7,8 +7,8 @@ import { links } from '../data/links'
 // Each line is quoted from the linked repo's README or the résumé.
 const PROOF = [
   {
-    project: 'OpsPilot',
-    slug: 'opspilot',
+    project: 'Rootline',
+    slug: 'rootline',
     stat: '93% vs. 30%',
     text: 'root-cause accuracy of my incident-response agent vs. an LLM-only baseline, 30-incident benchmark',
   },
@@ -19,8 +19,8 @@ const PROOF = [
     text: 'an open-source CI harness that grades agent trajectories and blocks regressions',
   },
   {
-    project: 'ProspectPilot',
-    slug: 'prospectpilot',
+    project: 'Citewise',
+    slug: 'citewise',
     stat: '960 trials',
     text: 'of seeded evals, used to show a self-improvement loop’s gains were noise, and to fix the loop',
   },

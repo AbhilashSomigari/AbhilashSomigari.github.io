@@ -16,8 +16,8 @@ const USER = 'AbhilashSomigari'
 function rawRepo(overrides = {}) {
   return {
     id: 1,
-    name: 'opspilot',
-    html_url: 'https://github.com/AbhilashSomigari/opspilot',
+    name: 'rootline',
+    html_url: 'https://github.com/AbhilashSomigari/rootline',
     description: 'AI incident-response agent',
     homepage: '',
     has_pages: false,
@@ -58,7 +58,7 @@ test('normalizeRepo treats blank descriptions and NOASSERTION licenses as missin
 test('the profile and site repos are excluded (prevents a self-triggering sync loop)', () => {
   assert.ok(isStructuralRepo('AbhilashSomigari', USER))
   assert.ok(isStructuralRepo('abhilashsomigari.github.io', USER))
-  assert.ok(!isStructuralRepo('opspilot', USER))
+  assert.ok(!isStructuralRepo('rootline', USER))
 })
 
 test('metadata changes produce a different snapshot; identical data does not', () => {

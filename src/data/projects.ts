@@ -8,9 +8,9 @@ import type { Project } from './types'
 
 export const projects: Project[] = [
   {
-    slug: 'opspilot',
-    repo: 'opspilot',
-    name: 'OpsPilot',
+    slug: 'rootline',
+    repo: 'rootline',
+    name: 'Rootline',
     oneLiner:
       'An AI SRE agent that investigates production incidents end to end and cannot act without a human’s approval.',
     tags: ['Agentic AI', 'Backend', 'Full Stack', 'Research'],
@@ -90,9 +90,9 @@ export const projects: Project[] = [
     extraLink: { label: 'PyPI', href: 'https://pypi.org/project/evalforge-agents/' },
   },
   {
-    slug: 'prospectpilot',
-    repo: 'prospectpilot',
-    name: 'ProspectPilot',
+    slug: 'citewise',
+    repo: 'citewise',
+    name: 'Citewise',
     oneLiner:
       'A self-improving multi-agent SDR pipeline whose prompt optimizer only ships changes that pass statistical and regression gates.',
     tags: ['Agentic AI', 'AI/ML', 'Backend', 'Research'],

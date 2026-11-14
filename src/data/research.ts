@@ -6,7 +6,7 @@ export const researchThemes: ResearchTheme[] = [
     description:
       'Treating evaluation as an engineering artifact: hidden-fault benchmarks scored against a no-tools baseline, harness bugs found and fixed before trusting the numbers, and paired-bootstrap confidence intervals to tell real prompt improvements from noise.',
     tags: ['Benchmarks', 'Regression Gates', 'Bootstrap CIs'],
-    linkedProjectSlug: 'prospectpilot',
+    linkedProjectSlug: 'citewise',
   },
   {
     title: 'Explainable AI for Object Detection',
